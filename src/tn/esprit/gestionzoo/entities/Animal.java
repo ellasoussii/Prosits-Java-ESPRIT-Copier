@@ -2,7 +2,6 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Animal {
-
     private String family;
     private String name;
     private int age;
@@ -10,7 +9,7 @@ public class Animal {
 
     public Animal(String family, String name, int age, boolean isMammal) {
         if (age < 0) {
-            throw new IllegalArgumentException("Animal age cannot be negative.");
+            throw new IllegalArgumentException("Age cannot be negative.");
         }
 
         this.family = family;
@@ -35,11 +34,11 @@ public class Animal {
         return isMammal;
     }
 
-    public void setAge(int age) {
-        if (age < 0) {
-            throw new IllegalArgumentException("Animal age cannot be negative.");
-        }
-
-        this.age = age;
+    @Override
+    public String toString() {
+        return "family=" + family
+                + ", name=" + name
+                + ", age=" + age
+                + ", isMammal=" + isMammal;
     }
 }
