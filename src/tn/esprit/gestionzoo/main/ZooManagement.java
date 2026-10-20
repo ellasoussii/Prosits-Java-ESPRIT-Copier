@@ -1,19 +1,40 @@
 
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Aquatic;
+import tn.esprit.gestionzoo.entities.Terrestrial;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin;
 
 public class ZooManagement {
 
     public static void main(String[] args) {
 
-        Animal lion = new Animal("Feline", "Simba", 5, true);
-        Animal tiger = new Animal("Feline", "Tiger", 4, true);
+        Aquatic aquatic = new Aquatic(
+                "Fish", "Nemo", 2, false, "Ocean"
+        );
 
-        Zoo myZoo = new Zoo("Friguia Park", "Hammamet", 10);
+        Terrestrial terrestrial = new Terrestrial(
+                "Mammal", "Lion", 5, true, 4
+        );
 
-        myZoo.addAnimal(lion);
-        myZoo.addAnimal(tiger);
+        Dolphin dolphin = new Dolphin(
+                "Mammal", "Flipper", 8, true, "Ocean", 25.5f
+        );
+
+        Penguin penguin = new Penguin(
+                "Bird", "Pingu", 3, false, "Antarctica", 200.0f
+        );
+
+        // Instruction 23: Display the objects
+        System.out.println(aquatic);
+        System.out.println(terrestrial);
+        System.out.println(dolphin);
+        System.out.println(penguin);
+
+        // Instruction 24: Call swim()
+        aquatic.swim();
+        dolphin.swim();
+        penguin.swim();
     }
 }
