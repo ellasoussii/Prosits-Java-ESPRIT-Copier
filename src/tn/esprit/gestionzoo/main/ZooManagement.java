@@ -1,71 +1,75 @@
 
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Terrestrial;
-import tn.esprit.gestionzoo.entities.Dolphin;
-import tn.esprit.gestionzoo.entities.Penguin;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.*;
 
 public class ZooManagement {
 
     public static void main(String[] args) {
 
-        // Create a terrestrial animal
-        Terrestrial terrestrial = new Terrestrial(
-                "Mammal", "Lion", 5, true, 4
-        );
+        try {
 
-        // Create aquatic animals
-        Dolphin dolphin1 = new Dolphin(
-                "Mammal", "Flipper", 8, true, "Ocean", 25.5f
-        );
+            // Create a zoo with only 3 cages
+            Zoo zoo = new Zoo("MyZoo", "Bizerte", 3);
 
-        Dolphin dolphin2 = new Dolphin(
-                "Mammal", "Dolly", 6, true, "Ocean", 20.0f
-        );
+            // Create four terrestrial animals
+            Terrestrial lion = new Terrestrial(
+                    "Mammal", "Lion", 5, true, 4
+            );
 
-        Penguin penguin1 = new Penguin(
-                "Bird", "Pingu", 3, false, "Antarctica", 200.0f
-        );
+            Terrestrial tiger = new Terrestrial(
+                    "Mammal", "Tiger", 6, true, 4
+            );
 
-        Penguin penguin2 = new Penguin(
-                "Bird", "Penny", 4, false, "Antarctica", 300.0f
-        );
+            Terrestrial elephant = new Terrestrial(
+                    "Mammal", "Elephant", 10, true, 4
+            );
 
-        // Create a zoo
-        Zoo zoo = new Zoo("MyZoo", "Bizerte", 20);
+            Terrestrial monkey = new Terrestrial(
+                    "Mammal", "Monkey", 3, true, 2
+            );
 
-        // Add aquatic animals to the zoo
-        zoo.addAquaticAnimal(dolphin1);
-        zoo.addAquaticAnimal(dolphin2);
-        zoo.addAquaticAnimal(penguin1);
-        zoo.addAquaticAnimal(penguin2);
+            // Add animals and display the number after each attempt
+            try {
+                zoo.addAnimal(lion);
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            }
 
-        // Instruction 23: Display the objects
-        System.out.println(terrestrial);
-        System.out.println(dolphin1);
-        System.out.println(dolphin2);
-        System.out.println(penguin1);
-        System.out.println(penguin2);
+            try {
+                zoo.addAnimal(tiger);
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            }
 
-        // Instruction 27: Make all aquatic animals swim
-        System.out.println("\n--- Aquatic animals swimming ---");
-        zoo.displayAquaticAnimals();
+            try {
+                zoo.addAnimal(elephant);
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            }
 
-        // Instruction 29: Display maximum penguin swimming depth
-        System.out.println("\n--- Maximum penguin swimming depth ---");
-        System.out.println(zoo.maxPenguinSwimmingDepth());
+            try {
+                zoo.addAnimal(monkey);
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            } catch (ZooFullException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Number of animals: " + zoo.getNbrAnimals());
+            }
 
-        // Instruction 30: Display the number of aquatic animals by type
-        System.out.println("\n--- Number of aquatic animals by type ---");
-        zoo.displayNumberOfAquaticsByType();
+            // Test InvalidAgeException
+            Terrestrial invalidAnimal = new Terrestrial(
+                    "Mammal", "Invalid Animal", -2, true, 4
+            );
 
-        // Instruction 31: Test equals()
-        Dolphin dolphin3 = new Dolphin(
-                "Mammal", "Flipper", 8, true, "Ocean", 30.0f
-        );
+        } catch (InvalidAgeException e) {
+            System.out.println("Invalid age: " + e.getMessage());
+        }
 
-        System.out.println("\n--- Testing equals() ---");
-        System.out.println(dolphin1.equals(dolphin3));
     }
 }

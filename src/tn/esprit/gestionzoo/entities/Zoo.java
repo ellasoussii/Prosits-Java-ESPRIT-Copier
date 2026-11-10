@@ -38,20 +38,29 @@ public class Zoo {
     }
 
 
+    public int getNbrAnimals() {
+        int count = 0;
 
-    public boolean addAnimal(Animal animal) {
-        if (animal == null || isZooFull()) {
-            return false;
+        for (Animal animal : animals) {
+            if (animal != null) {
+                count++;
+            }
         }
+
+        return count;
+    }
+
+
+    public void addAnimal(Animal animal) throws ZooFullException  {
 
         for (int i = 0; i < animals.length; i++) {
             if (animals[i] == null) {
                 animals[i] = animal;
-                return true;
+                return ;
             }
         }
 
-        return false;
+        throw new ZooFullException();
     }
 
 
