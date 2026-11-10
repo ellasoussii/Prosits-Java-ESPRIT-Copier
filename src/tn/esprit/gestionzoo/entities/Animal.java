@@ -7,9 +7,10 @@ public class Animal {
     private int age;
     private boolean isMammal;
 
-    public Animal(String family, String name, int age, boolean isMammal) {
+    public Animal(String family, String name, int age, boolean isMammal)
+    throws InvalidAgeException{
         if (age < 0) {
-            throw new IllegalArgumentException("Age cannot be negative.");
+            throw new InvalidAgeException();
         }
 
         this.family = family;
