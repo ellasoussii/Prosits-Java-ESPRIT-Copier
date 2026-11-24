@@ -9,67 +9,37 @@ public class ZooManagement {
 
         try {
 
-            // Create a zoo with only 3 cages
-            Zoo zoo = new Zoo("MyZoo", "Bizerte", 3);
+            // Create an Aquatic reference using a Dolphin object
+            Aquatic aquatic = new Dolphin(
+                    "Mammal", "Flipper", 8, true, "Ocean", 25.5f
+            );
 
-            // Create four terrestrial animals
-            Terrestrial lion = new Terrestrial(
+            // Create a Penguin
+            Penguin penguin = new Penguin(
+                    "Bird", "Pingu", 3, false, "Antarctica", 200.0f
+            );
+
+            // Create a Terrestrial animal
+            Terrestrial terrestrial = new Terrestrial(
                     "Mammal", "Lion", 5, true, 4
             );
 
-            Terrestrial tiger = new Terrestrial(
-                    "Mammal", "Tiger", 6, true, 4
-            );
+            // Test Carnivore interface
+            System.out.println("--- Aquatic animal ---");
+            aquatic.eatMeat(Food.MEAT);
 
-            Terrestrial elephant = new Terrestrial(
-                    "Mammal", "Elephant", 10, true, 4
-            );
+            System.out.println("\n--- Penguin ---");
+            penguin.eatMeat(Food.MEAT);
 
-            Terrestrial monkey = new Terrestrial(
-                    "Mammal", "Monkey", 3, true, 2
-            );
+            // Test Omnivore interface
+            System.out.println("\n--- Terrestrial animal ---");
 
-            // Add animals and display the number after each attempt
-            try {
-                zoo.addAnimal(lion);
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            } catch (ZooFullException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            }
-
-            try {
-                zoo.addAnimal(tiger);
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            } catch (ZooFullException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            }
-
-            try {
-                zoo.addAnimal(elephant);
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            } catch (ZooFullException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            }
-
-            try {
-                zoo.addAnimal(monkey);
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            } catch (ZooFullException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Number of animals: " + zoo.getNbrAnimals());
-            }
-
-            // Test InvalidAgeException
-            Terrestrial invalidAnimal = new Terrestrial(
-                    "Mammal", "Invalid Animal", -2, true, 4
-            );
+            terrestrial.eatMeat(Food.MEAT);
+            terrestrial.eatPlant(Food.PLANT);
+            terrestrial.eatPlantAndMeet(Food.BOTH);
 
         } catch (InvalidAgeException e) {
-            System.out.println("Invalid age: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
-
     }
 }
